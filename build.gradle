@@ -1,0 +1,42 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    
+    dependencies {
+        // defined in gradle.properties
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.google.cloud.tools:appengine-gradle-plugin:1.3.5"
+    }
+}
+
+apply plugin: 'kotlin'
+apply plugin: 'war'
+apply plugin: 'com.google.cloud.tools.appengine'
+
+group 'example'
+version '0.0.1'
+
+sourceSets {
+    main.kotlin.srcDirs = main.java.srcDirs = ['src/main/kotlin']
+    test.kotlin.srcDirs = test.java.srcDirs = ['test']
+    main.resources.srcDirs = ['src/main/resources']
+    test.resources.srcDirs = ['testresources']
+}
+
+repositories {
+    jcenter()
+    maven { url "https://kotlin.bintray.com/ktor" }
+}
+
+dependencies {
+    // defined in gradle.properties
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    compile "io.ktor:ktor-server-servlet:$ktor_version"
+    compile "com.google.actions:actions-on-google:1.0.0"
+    providedCompile "com.google.appengine:appengine:1.9.60"
+}
+
+appengine {  // App Engine tasks configuration
+    tools.cloudSdkHome="/Users/shin/.config/gcloud/google-cloud-sdk"
+}
