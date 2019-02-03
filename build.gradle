@@ -38,5 +38,6 @@ dependencies {
 }
 
 appengine {  // App Engine tasks configuration
-    tools.cloudSdkHome="/Users/shin/.config/gcloud/google-cloud-sdk"
+// example: tools.cloudSdkHome="/Users/1coin178/.config/gcloud/google-cloud-sdk"
+    tools.cloudSdkHome="<path-for-google-cloud-sdk>"
 }
